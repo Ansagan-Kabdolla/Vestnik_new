@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+About
+{% endblock %}
+{% block content %}
+<div class="main" style="width:72%">
+
+			<h1 class="main_title">{{title}}</h1>
+			<div class="main_content">
+				<img src="{% static 'zhournal.png' %}" width="400px" style="float: right">{{content|safe}}</div>
+		</div>
+		<div class="sub_menu">
+			<ul class="sub_menu_ul">
+				<li><a href="{% url 'add_file' %}" class="sub_menu_a "><span class="sub_menu_a_first">Добавить</span><img src="{% static 'send.jpg' %}" alt="" width="30px"></a></li>
+				<li><a href="{% url 'publications' %}" class="sub_menu_a">Просмотреть все публикации</a></li>
+				<li><a href="{% url 'vestniks' %}" class="sub_menu_a">Просмотреть все вестники</a></li>
+			</ul>
+		</div>
+{% endblock %}

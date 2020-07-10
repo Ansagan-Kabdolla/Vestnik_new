@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+About
+{% endblock %}
+{% block content %}
+<div class="main">
+    <p>Topic:{{file.topic}}</p>
+    <h1>Author:{{ file.author }}</h1>
+    <p>Soauthor:{{ file.soauthor }}</p>
+    <form action="{% url 'update' pk=file.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="checkbox" name = "redactor" value="True">
+        <button type="submit">
+            OK
+        </button>
+    </form>
+</div>
+{% endblock %}

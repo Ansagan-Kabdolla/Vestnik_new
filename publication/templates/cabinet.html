@@ -1,0 +1,43 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+Search
+{% endblock %}
+{% block content %}
+<div class="main">
+    Cabinet
+    <hr>
+    {% if user.is_authenticated %}
+    <h1>{{user.username}}</h1><hr>
+    <h2>Send({{sc}})</h2>
+    {% for file in SendFiles %}
+    <ol>
+        <li><h3>Topic:{{ file.topic }}</h3>
+        <h3>Author:{{ file.author }}</h3>
+        <h3>Link:<a href="{{file.get_absolute_url}}">{{ file.file }}</a></h3>
+            </li>
+    </ol>
+    {% empty %}
+    <h3>No send files</h3>
+
+    {% endfor %}
+    <hr>
+    <h2>Public({{rc}})</h2>
+    {% for file in RightFiles %}
+    <ol>
+        <li><h3>Topic:{{ file.topic }}</h3>
+        <h3>Author:{{ file.author }}</h3>
+        <h3>Link:<a href="{{file.get_absolute_url}}">{{ file.file }}</a></h3>
+            </li>
+    </ol>
+        {% empty %}
+    <h3>No public files</h3>
+
+    {% endfor %}
+    <p><a href="{% url 'password_change' %}">Password Change</a></p>
+    {% else %}
+    <h1>Sorry,your not <a href="{% url 'login' %}"> auth</a></h1>
+    {% endif %}
+</div>
+{% endblock %}

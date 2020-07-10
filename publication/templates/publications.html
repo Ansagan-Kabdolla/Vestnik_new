@@ -1,0 +1,34 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+About
+{% endblock %}
+{% block content %}
+<div class="main" style="width:72%">
+    {% for file in files %}
+    <h3>Topic:{{ file.topic }}</h3>
+    <h3>Author:{{ file.author }}</h3>
+    <h3>Link:<a href="{{file.get_absolute_url}}">{{ file.file }}</a></h3>
+    <hr>
+    {% endfor %}
+</div>
+<div class="sub_menu">
+	Filter
+	<hr>
+	<form action="{% url 'filter_ajax' %}" method="get" name="filter">
+	Year
+	<ul>
+        <li><input type="checkbox" name="year"  value="2020"><span>2020</span></li>
+
+	</ul>
+	Seria
+	<ul>
+		{% for seria in series %}
+	<li><input type="checkbox" name="predmet" value="{{seria}}"><span>{{seria}}</span></li>
+		{% endfor %}
+</ul>
+<button type="submit">Filter</button>
+</form>
+</div>
+{% endblock %}

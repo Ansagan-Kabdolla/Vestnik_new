@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+Add_vestnik
+{% endblock %}
+{% block content %}
+<div class="main">
+    {% if user.is_authenticated %}
+    <h1>Hello,{{user.username}}</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Add</button>
+    </form>
+    {%else%}
+    <h1>Sorry,your not <a href="{% url 'login' %}"> auth</a></h1>
+    {%endif%}
+</div>
+{% endblock %}

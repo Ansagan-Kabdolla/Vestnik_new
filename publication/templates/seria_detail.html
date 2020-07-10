@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+About
+{% endblock %}
+{% block content %}
+<div class="main">
+    <h1>Name(seria):{{seria.name}}</h1>
+    <h2>Description(seria):{{seria.description|safe}}</h2>
+    <hr>
+    {% if seria.sFiles.all %}
+    <ul>
+        <h3 style="text-align:center">All Files({{seria.name}})</h3>
+    {% for file in seria.sFiles.all %}
+    <li>{{file.author}}</li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <h3  style="text-align:center">Sorry,the list empty</h3>
+    {% endif %}
+</div>
+{% endblock %}
